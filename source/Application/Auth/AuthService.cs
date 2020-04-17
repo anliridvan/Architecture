@@ -5,6 +5,7 @@ using Architecture.Model;
 using DotNetCore.Extensions;
 using DotNetCore.Results;
 using DotNetCore.Security;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -54,7 +55,7 @@ namespace Architecture.Application
             return Result<Auth>.Success(auth);
         }
 
-        public async Task DeleteAsync(long id)
+        public async Task DeleteAsync(Guid id)
         {
             await _authRepository.DeleteAsync(id);
         }

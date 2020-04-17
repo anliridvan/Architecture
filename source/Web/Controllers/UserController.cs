@@ -4,6 +4,7 @@ using Architecture.Model;
 using DotNetCore.AspNetCore;
 using DotNetCore.Objects;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace Architecture.Web
@@ -26,19 +27,19 @@ namespace Architecture.Web
         }
 
         [HttpDelete("{id}")]
-        public Task<IActionResult> DeleteAsync(long id)
+        public Task<IActionResult> DeleteAsync(Guid id)
         {
             return _userService.DeleteAsync(id).ResultAsync();
         }
 
         [HttpGet("{id}")]
-        public Task<IActionResult> GetAsync(long id)
+        public Task<IActionResult> GetAsync(Guid id)
         {
             return _userService.GetAsync(id).ResultAsync();
         }
 
         [HttpPatch("{id}/Inactivate")]
-        public Task InactivateAsync(long id)
+        public Task InactivateAsync(Guid id)
         {
             return _userService.InactivateAsync(id);
         }

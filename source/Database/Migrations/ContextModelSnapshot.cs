@@ -21,10 +21,9 @@ namespace Architecture.Database.Migrations
 
             modelBuilder.Entity("Architecture.Domain.Auth", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Login")
                         .IsRequired()
@@ -54,7 +53,7 @@ namespace Architecture.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"),
                             Login = "admin",
                             Password = "O34uMN1Vho2IYcSM7nlXEqn57RZ8VEUsJwH++sFr0i3MSHJVx8J3PQGjhLR3s5i4l0XWUnCnymQ/EbRmzvLy8uMWREZu7vZI+BqebjAl5upYKMMQvlEcBeyLcRRTTBpYpv80m/YCZQmpig4XFVfIViLLZY/Kr5gBN5dkQf25rK8=",
                             Roles = 3,
@@ -64,13 +63,12 @@ namespace Architecture.Database.Migrations
 
             modelBuilder.Entity("Architecture.Domain.User", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<long?>("AuthId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("AuthId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -84,8 +82,8 @@ namespace Architecture.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
-                            AuthId = 1L,
+                            Id = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"),
+                            AuthId = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"),
                             Status = 1
                         });
                 });
@@ -98,10 +96,8 @@ namespace Architecture.Database.Migrations
 
                     b.OwnsOne("Architecture.Domain.Email", "Email", b1 =>
                         {
-                            b1.Property<long>("UserId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("bigint")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                            b1.Property<Guid>("UserId")
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("Value")
                                 .IsRequired()
@@ -123,17 +119,15 @@ namespace Architecture.Database.Migrations
                             b1.HasData(
                                 new
                                 {
-                                    UserId = 1L,
+                                    UserId = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"),
                                     Value = "administrator@administrator.com"
                                 });
                         });
 
                     b.OwnsOne("Architecture.Domain.FullName", "FullName", b1 =>
                         {
-                            b1.Property<long>("UserId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("bigint")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                            b1.Property<Guid>("UserId")
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("Name")
                                 .IsRequired()
@@ -157,7 +151,7 @@ namespace Architecture.Database.Migrations
                             b1.HasData(
                                 new
                                 {
-                                    UserId = 1L,
+                                    UserId = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"),
                                     Name = "Administrator",
                                     Surname = "Administrator"
                                 });

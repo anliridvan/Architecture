@@ -8,7 +8,7 @@ namespace Architecture.Database
 {
     public static class UserExpression
     {
-        public static Expression<Func<User, long>> AuthId => user => user.Auth.Id;
+        public static Expression<Func<User, Guid>> AuthId => user => user.Auth.Id;
 
         public static Expression<Func<User, UserModel>> Model => user => new UserModel
         {
@@ -18,7 +18,7 @@ namespace Architecture.Database
             Email = user.Email.Value
         };
 
-        public static Expression<Func<User, bool>> Id(long id)
+        public static Expression<Func<User, bool>> Id(Guid id)
         {
             return user => user.Id == id;
         }

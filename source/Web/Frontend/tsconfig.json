@@ -8,28 +8,21 @@
         "noErrorTruncation": true,
         "noImplicitReturns": true,
         "noUnusedLocals": true,
-        "noUnusedParameters": true,
+        //"noUnusedParameters": true,
         "removeComments": true,
         "skipLibCheck": true,
-        "sourceMap": true,
         "strict": true,
         "target": "es2015",
-        "lib": [
-            "es2018",
-            "dom"
-        ]
+        "noImplicitAny": false, // Close implicit 'Any' type using  ex: var value;
+        "noUnusedParameters": false, // Close UnUsed parameter
+        "sourceMap": true, // Debug TS code -Do Not deploy on Prod publish --Ridvan
+        "lib": ["es2018", "dom"]
     },
     "angularCompilerOptions": {
         "fullTemplateTypeCheck": true,
         "strictInjectionParameters": true,
         "strictTemplates": true
     },
-    "files": [
-        "src/main.ts",
-        "src/polyfills.ts"
-    ],
-    "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
-    ]
+    "files": ["src/main.ts", "src/polyfills.ts"],
+    "exclude": ["node_modules", "**/*.spec.ts"]
 }

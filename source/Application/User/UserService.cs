@@ -4,6 +4,7 @@ using Architecture.Model;
 using DotNetCore.Objects;
 using DotNetCore.Results;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,20 +29,20 @@ namespace Architecture.Application
             _userRepository = userRepository;
         }
 
-        public async Task<IResult<long>> AddAsync(UserModel model)
+        public async Task<IResult<Guid>> AddAsync(UserModel model)
         {
             var validation = await new AddUserModelValidator().ValidateAsync(model);
 
             if (validation.Failed)
             {
-                return Result<long>.Fail(validation.Message);
+                return Result<Guid>.Fail(validation.Message);
             }
 
             var authResult = await _authService.AddAsync(model.Auth);
 
             if (authResult.Failed)
             {
-                return Result<long>.Fail(authResult.Message);
+                return Result<Guid>.Fail(authResult.Message);
             }
 
             var user = UserFactory.Create(model, authResult.Data);
@@ -50,10 +51,10 @@ namespace Architecture.Application
 
             await _unitOfWork.SaveChangesAsync();
 
-            return Result<long>.Success(user.Id);
+            return Result<Guid>.Success(user.Id);
         }
 
-        public async Task<IResult> DeleteAsync(long id)
+        public async Task<IResult> DeleteAsync(Guid id)
         {
             var authId = await _userRepository.GetAuthIdByUserIdAsync(id);
 
@@ -66,12 +67,12 @@ namespace Architecture.Application
             return Result.Success();
         }
 
-        public Task<UserModel> GetAsync(long id)
+        public Task<UserModel> GetAsync(Guid id)
         {
             return _userRepository.GetByIdAsync(id);
         }
 
-        public async Task InactivateAsync(long id)
+        public async Task InactivateAsync(Guid id)
         {
             var user = new User(id);
 

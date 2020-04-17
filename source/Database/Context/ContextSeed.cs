@@ -1,6 +1,7 @@
 using Architecture.CrossCutting;
 using Architecture.Domain;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Architecture.Database
 {
@@ -18,7 +19,7 @@ namespace Architecture.Database
             {
                 auth.HasData(new
                 {
-                    Id = 1L,
+                    Id = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"),
                     Login = "admin",
                     Password = "O34uMN1Vho2IYcSM7nlXEqn57RZ8VEUsJwH++sFr0i3MSHJVx8J3PQGjhLR3s5i4l0XWUnCnymQ/EbRmzvLy8uMWREZu7vZI+BqebjAl5upYKMMQvlEcBeyLcRRTTBpYpv80m/YCZQmpig4XFVfIViLLZY/Kr5gBN5dkQf25rK8=",
                     Salt = "79005744-e69a-4b09-996b-08fe0b70cbb9",
@@ -33,21 +34,21 @@ namespace Architecture.Database
             {
                 user.HasData(new
                 {
-                    Id = 1L,
+                    Id = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"),
                     Status = Status.Active,
-                    AuthId = 1L
+                    AuthId = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e")
                 });
 
                 user.OwnsOne(owned => owned.FullName).HasData(new
                 {
-                    UserId = 1L,
+                    UserId = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"),
                     Name = "Administrator",
                     Surname = "Administrator"
                 });
 
                 user.OwnsOne(owned => owned.Email).HasData(new
                 {
-                    UserId = 1L,
+                    UserId = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"),
                     Value = "administrator@administrator.com"
                 });
             });

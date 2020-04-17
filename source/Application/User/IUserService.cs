@@ -1,6 +1,7 @@
 using Architecture.Model;
 using DotNetCore.Objects;
 using DotNetCore.Results;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,13 +9,13 @@ namespace Architecture.Application
 {
     public interface IUserService
     {
-        Task<IResult<long>> AddAsync(UserModel model);
+        Task<IResult<Guid>> AddAsync(UserModel model);
 
-        Task<IResult> DeleteAsync(long id);
+        Task<IResult> DeleteAsync(Guid id);
 
-        Task<UserModel> GetAsync(long id);
+        Task<UserModel> GetAsync(Guid id);
 
-        Task InactivateAsync(long id);
+        Task InactivateAsync(Guid id);
 
         Task<PagedList<UserModel>> ListAsync(PagedListParameters parameters);
 

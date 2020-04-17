@@ -4,7 +4,7 @@ using System;
 
 namespace Architecture.Domain
 {
-    public class Auth : Entity<long>
+    public class Auth : Entity<Guid>
     {
         public Auth
         (

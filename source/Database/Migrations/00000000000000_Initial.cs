@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Architecture.Database.Migrations
 {
-    public partial class Initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,8 +18,7 @@ namespace Architecture.Database.Migrations
                 schema: "Auth",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     Login = table.Column<string>(maxLength: 100, nullable: false),
                     Password = table.Column<string>(maxLength: 500, nullable: false),
                     Salt = table.Column<string>(maxLength: 500, nullable: false),
@@ -34,13 +34,12 @@ namespace Architecture.Database.Migrations
                 schema: "User",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: true),
                     Surname = table.Column<string>(maxLength: 200, nullable: true),
                     Email = table.Column<string>(maxLength: 300, nullable: true),
                     Status = table.Column<int>(nullable: false),
-                    AuthId = table.Column<long>(nullable: true)
+                    AuthId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,13 +57,13 @@ namespace Architecture.Database.Migrations
                 schema: "Auth",
                 table: "Auths",
                 columns: new[] { "Id", "Login", "Password", "Roles", "Salt" },
-                values: new object[] { 1L, "admin", "O34uMN1Vho2IYcSM7nlXEqn57RZ8VEUsJwH++sFr0i3MSHJVx8J3PQGjhLR3s5i4l0XWUnCnymQ/EbRmzvLy8uMWREZu7vZI+BqebjAl5upYKMMQvlEcBeyLcRRTTBpYpv80m/YCZQmpig4XFVfIViLLZY/Kr5gBN5dkQf25rK8=", 3, "79005744-e69a-4b09-996b-08fe0b70cbb9" });
+                values: new object[] { new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"), "admin", "O34uMN1Vho2IYcSM7nlXEqn57RZ8VEUsJwH++sFr0i3MSHJVx8J3PQGjhLR3s5i4l0XWUnCnymQ/EbRmzvLy8uMWREZu7vZI+BqebjAl5upYKMMQvlEcBeyLcRRTTBpYpv80m/YCZQmpig4XFVfIViLLZY/Kr5gBN5dkQf25rK8=", 3, "79005744-e69a-4b09-996b-08fe0b70cbb9" });
 
             migrationBuilder.InsertData(
                 schema: "User",
                 table: "Users",
                 columns: new[] { "Id", "AuthId", "Status", "Email", "Name", "Surname" },
-                values: new object[] { 1L, 1L, 1, "administrator@administrator.com", "Administrator", "Administrator" });
+                values: new object[] { new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"), new Guid("0f8fad5b-d9cb-469f-a165-70867728950e"), 1, "administrator@administrator.com", "Administrator", "Administrator" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Auths_Login",

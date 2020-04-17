@@ -1,6 +1,7 @@
 using Architecture.Domain;
 using Architecture.Model;
 using DotNetCore.Results;
+using System;
 using System.Threading.Tasks;
 
 namespace Architecture.Application
@@ -9,7 +10,7 @@ namespace Architecture.Application
     {
         Task<IResult<Auth>> AddAsync(AuthModel model);
 
-        Task DeleteAsync(long id);
+        Task DeleteAsync(Guid id);
 
         Task<IResult<TokenModel>> SignInAsync(SignInModel model);
     }

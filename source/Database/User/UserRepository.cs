@@ -13,12 +13,12 @@ namespace Architecture.Database
     {
         public UserRepository(Context context) : base(context) { }
 
-        public Task<long> GetAuthIdByUserIdAsync(long id)
+        public Task<Guid> GetAuthIdByUserIdAsync(Guid id)
         {
             return Queryable.Where(UserExpression.Id(id)).Select(UserExpression.AuthId).SingleOrDefaultAsync();
         }
 
-        public Task<UserModel> GetByIdAsync(long id)
+        public Task<UserModel> GetByIdAsync(Guid id)
         {
             return Queryable.Where(UserExpression.Id(id)).Select(UserExpression.Model).SingleOrDefaultAsync();
         }

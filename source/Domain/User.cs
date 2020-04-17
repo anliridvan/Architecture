@@ -1,9 +1,10 @@
 using Architecture.CrossCutting;
 using DotNetCore.Domain;
+using System;
 
 namespace Architecture.Domain
 {
-    public class User : Entity<long>
+    public class User : Entity<Guid>
     {
         public User
         (
@@ -18,7 +19,7 @@ namespace Architecture.Domain
             Activate();
         }
 
-        public User(long id) : base(id) { }
+        public User(Guid id) : base(id) { }
 
         public FullName FullName { get; private set; }
 
