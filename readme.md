@@ -1,3 +1,10 @@
+# Guid Identifiers
+
+Added By Me
+
+
+=> Thanks Rafeal For Good Shape of Architecture
+
 # Architecture
 
 This project is an example of architecture using new technologies and best practices.
